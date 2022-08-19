@@ -1,0 +1,8 @@
+set -xg ALL_PROXY socks5://(grep nameserver /etc/resolv.conf | awk { print \$2 }):7890
+set -xg HTTPS_PROXY http://(grep nameserver /etc/resolv.conf | awk { print \$2 }):7890
+set -xg HTTP_PROXY http://(grep nameserver /etc/resolv.conf | awk { print \$2 }):7890
+set -xg all_proxy socks5://(grep nameserver /etc/resolv.conf | awk { print \$2 }):7890
+set -xg http_proxy http://(grep nameserver /etc/resolv.conf | awk { print \$2 }):7890
+set -xg https_proxy http://(grep nameserver /etc/resolv.conf | awk { print \$2 }):7890
+
+ProxyCommand nc -x (grep nameserver /etc/resolv.conf | awk { print \$2 }):7890 %h %p
